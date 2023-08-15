@@ -8,9 +8,13 @@ let todolist = document.getElementById("todolist");
 
 // function to push items in an array
 const Clicked = () => {
-  list.push(inp.value);
-  inp.value = "";
-  showList();
+  if (inp.value.trim() != "") {
+    list.push(inp.value);
+    inp.value = "";
+    showList();
+  } else {
+    alert("Empty input");
+  }
 };
 document.getElementById("btn").addEventListener("click", Clicked);
 
@@ -23,8 +27,13 @@ const deleteItem = (i) => {
 //  function to edit item
 const editItem = (i) => {
   let newValue = prompt("Please enter new value");
-  list.splice(i, 1, newValue);
-  showList();
+  if (newValue.trim() != "") {
+    list.splice(i, 1, newValue);
+    showList();
+  } else {
+    /*alert("so u have come to see me");*/
+    alert("Empty Edit So No Change");
+  }
 };
 
 const showList = () => {
@@ -34,12 +43,13 @@ const showList = () => {
       "<li>" +
       (i + 1) +
       ") " +
+      "<span>" +
       n +
+      "</span>" +
       "<a onclick='editItem(" +
       i +
       ")' >Edit</a><a onclick='deleteItem(" +
       i +
       ")' >&times;</a></li>";
-    console.log(i);
   });
 };
